@@ -14,7 +14,7 @@ const ProtectedRoutes = express.Router();
 middlewaresConfig(app);
 
 // Add the apiRoutes stack to the server with protected routes
-app.use("/api", ProtectedRoutes, ApiRoutes);
+app.use("/api", ApiRoutes);
 app.get("/", (req, res) => {
   res.send(`
     <div style="position: absolute; top:0; bottom: 0; left: 0; right: 0; margin: auto; width: 350px;height: 350px;">

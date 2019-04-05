@@ -1,12 +1,6 @@
 const mongoose = require("mongoose");
 
 const DeveloperSchema = new mongoose.Schema({
-  Id: {
-    type: mongoose.Schema.Types.ObjectId,
-    index: true,
-    required: true,
-    auto: true
-  },
   Name: { type: String, default: "" },
   Email: { type: String, default: "" },
   Tasks: { type: Array, default: [] },

@@ -1,11 +1,12 @@
 const HTTPStatus = require("http-status");
 const Customer = require("../models/customer");
 
-const getAll = async (req, res, next) => {
+const getById = async (req, res, next) => {
+  console.log(req.query.id);
+  const customer = await Customer.findById(req.params.id);
   try {
-    const customers = await Customer.find();
     return res.status(HTTPStatus.OK).json({
-      customers
+      customer
     });
   } catch (err) {
     err.status = HTTPStatus.BAD_REQUEST;
@@ -13,12 +14,11 @@ const getAll = async (req, res, next) => {
   }
 };
 
-const getById = async (req, res, next) => {
-  const customer = await Customer.findById(req.params.id);
-
+const getAll = async (req, res, next) => {
   try {
+    const customers = await Customer.find();
     return res.status(HTTPStatus.OK).json({
-      customer
+      customers
     });
   } catch (err) {
     err.status = HTTPStatus.BAD_REQUEST;
@@ -51,7 +51,7 @@ const updateCustomer = async (req, res, next) => {
     const customer = await Customer.findById(req.params.id);
 
     Object.keys(req.body).forEach(key => {
-      customer[key] = body[key];
+      customer[key] = req.body[key];
     });
 
     return res.status(HTTPStatus.OK).json(await customer.save());

@@ -49,7 +49,7 @@ const updateProject = async (req, res, next) => {
   try {
     const project = await Project.findById(req.params.id);
     Object.keys(req.body).forEach(key => {
-      project[key] = body[key];
+      project[key] = req.body[key];
     });
     return res.status(HTTPStatus.OK).json(await project.save());
   } catch (err) {

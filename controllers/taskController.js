@@ -49,7 +49,7 @@ const updateTask = async (req, res, next) => {
   try {
     const task = await Task.findById(req.params.id);
     Object.keys(req.body).forEach(key => {
-      task[key] = body[key];
+      task[key] = req.body[key];
     });
     return res.status(HTTPStatus.OK).json(await task.save());
   } catch (err) {

@@ -53,7 +53,7 @@ const updateDeveloper = async (req, res, next) => {
     const developer = await Developer.findById(req.params.id);
 
     Object.keys(req.body).forEach(key => {
-      developer[key] = body[key];
+      developer[key] = req.body[key];
     });
 
     return res.status(HTTPStatus.OK).json(await developer.save());

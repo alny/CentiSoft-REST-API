@@ -1,12 +1,6 @@
 const mongoose = require("mongoose");
 
 const TaskSchema = new mongoose.Schema({
-  Id: {
-    type: mongoose.Schema.Types.ObjectId,
-    index: true,
-    required: true,
-    auto: true
-  },
   Name: { type: String, default: "" },
   Description: { type: String, default: "" },
   Created: { type: Date, default: Date.now },
